@@ -1,0 +1,45 @@
+a = Quat(1.000 + (2,3,4))
+b = Quat(4.000 + (0,0,7))
+c = Quat(0.000 + (1,1,0))
+d = Quat(j)
+e = Quat(k)
+f = Quat(0)
+g = Quat(1)
+h = Quat(3.0)
+c + d =  Quat(0.000 + (1,2,0))
+c + d + e =  Quat(0.000 + (1,2,1))
+5 * h is: Quat(15.0)
+h * 5 is: Quat(15.0)
+h / 3.0 is: Quat(1)
+h.magnitude() is: 3.0
+h.unit() is: Quat(1)
+g.unit() is: Quat(1)
+a.unit() is: Quat(0.183 + (0.365,0.548,0.73))
+a.vector() is: (2,3,4)
+a.scalar() is: 1.0
+a.conjugate() is: Quat(1.000 + (-2,-3,-4))
+a.inverse() is: Quat(0.033 + (-0.067,-0.1,-0.133))
+a * a.inverse() is: Quat(1)
+c == d is: False
+c != d is: True
+e == e is: True
+e != e is: False
+angle between c and d is: 45.001 degrees
+c_minus_d is: Quat(i)
+rot_matrix of c_minus_d is: 
+
+Matrix... 
+[
+   [   1.000   0.000   0.000  ]
+   [   0.000  -1.000   0.000  ]
+   [   0.000   0.000  -1.000  ]
+]
+plane is Quat(0.707 + (0.707,0,0))
+plane_rot_matrix is: 
+
+Matrix... 
+[
+   [   1.000   0.000   0.000  ]
+   [   0.000   0.000  -1.000  ]
+   [   0.000   1.000   0.000  ]
+]

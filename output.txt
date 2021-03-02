@@ -1,0 +1,200 @@
+a = Quat(1.0 + (2,3,4))
+b = Quat(4.0 + (0,0,7))
+c = Quat(0.0 + (1,1,0))
+d = Quat(j)
+e = Quat(k)
+f = Quat(0)
+g = Quat(1)
+h = Quat(3.0)
+c + d =  Quat(0.0 + (1,2,0))
+c + d + e =  Quat(0.0 + (1,2,1))
+5 * h is: Quat(15.0)
+h * 5 is: Quat(15.0)
+h / 3.0 is: Quat(1)
+h.magnitude() is: 3.0
+h.unit() is: Quat(1)
+g.unit() is: Quat(1)
+a.unit() is: Quat(0.2 + (0.365,0.548,0.73))
+a.vector() is: (2,3,4)
+a.scalar() is: 1.0
+a.conjugate() is: Quat(1.0 + (-2,-3,-4))
+a.inverse() is: Quat(0.0 + (-0.067,-0.1,-0.133))
+a * a.inverse() is: Quat(1)
+c == d is: False
+c != d is: True
+e == e is: True
+e != e is: False
+angle between c and d is: 45.001 degrees
+c_minus_d is: Quat(i)
+rot_matrix of c_minus_d is: 
+Matrix... [
+   [   1   0   0  ]
+   [   0  -1   0  ]
+   [   0   0  -1  ]
+]
+SEE THIS WEBSITE for DETAILED DIAGRAMS on the TESTS of the PLANE's rotations
+https://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToMatrix/examples/index.htm
+# -------------- LEVEL FLIGHT -------------------
+levelflight(E) is Quat(1)
+Matrix... [
+   [   1   0   0  ]
+   [   0   1   0  ]
+   [   0   0   1  ]
+]
+levelflight(N) is Quat(0.7 + (0,0.707,0))
+Matrix... [
+   [   0   0   1  ]
+   [   0   1   0  ]
+   [  -1   0   0  ]
+]
+levelflight(W) is Quat(j)
+Matrix... [
+   [  -1   0   0  ]
+   [   0   1   0  ]
+   [   0   0  -1  ]
+]
+levelflight(S) is Quat(0.7 + (0,-0.707,0))
+Matrix... [
+   [   0   0  -1  ]
+   [   0   1   0  ]
+   [   1   0   0  ]
+]
+# ----------------------------------------------------
+
+
+# -------- STRAIGHT UP ---------------------
+plane_straightupE is Quat(0.7 + (0,0,0.707))
+Matrix... [
+   [   0  -1   0  ]
+   [   1   0   0  ]
+   [   0   0   1  ]
+]
+plane_straightupN is Quat(0.5 + (0.5,0.5,0.5))
+Matrix... [
+   [   0   0   1  ]
+   [   1   0   0  ]
+   [   0   1   0  ]
+]
+plane_straightupW is Quat(0.0 + (0.707,0.707,0))
+Matrix... [
+   [   0   1   0  ]
+   [   1   0   0  ]
+   [   0   0  -1  ]
+]
+plane_straightupS is Quat(0.5 + (-0.5,-0.5,0.5))
+Matrix... [
+   [   0   0  -1  ]
+   [   1   0   0  ]
+   [   0  -1   0  ]
+]
+# -------- end STRAIGHT UP ---------------------
+
+
+# -------- STRAIGHT DOWN ---------------------
+plane_straightdownE is Quat(0.7 + (0,0,-0.707))
+Matrix... [
+   [   0   1   0  ]
+   [  -1   0   0  ]
+   [   0   0   1  ]
+]
+plane_straightdownN is Quat(0.5 + (-0.5,0.5,-0.5))
+Matrix... [
+   [   0   0   1  ]
+   [  -1   0   0  ]
+   [   0  -1   0  ]
+]
+plane_straightdownW is Quat(0.0 + (-0.707,0.707,0))
+Matrix... [
+   [   0  -1   0  ]
+   [  -1   0   0  ]
+   [   0   0  -1  ]
+]
+plane_straightdownS is Quat(0.5 + (0.5,-0.5,-0.5))
+Matrix... [
+   [   0   0  -1  ]
+   [  -1   0   0  ]
+   [   0   1   0  ]
+]
+# -------- end STRAIGHT UP ---------------------
+
+
+# --------  BANK/ROLL ---------------------
+plane_E_bankLeft90 is Quat(0.7 + (0.707,0,0))
+Matrix... [
+   [   1   0   0  ]
+   [   0   0  -1  ]
+   [   0   1   0  ]
+]
+plane_N_bankLeft90 is Quat(0.5 + (0.5,0.5,-0.5))
+Matrix... [
+   [   0   1   0  ]
+   [   0   0  -1  ]
+   [  -1   0   0  ]
+]
+plane_W_bankLeft90 is Quat(0.0 + (0,0.707,-0.707))
+Matrix... [
+   [  -1   0   0  ]
+   [   0   0  -1  ]
+   [   0  -1   0  ]
+]
+plane_S_bankLeft90 is Quat(0.5 + (0.5,-0.5,0.5))
+Matrix... [
+   [   0  -1   0  ]
+   [   0   0  -1  ]
+   [   1   0   0  ]
+]
+
+Banking/Rolling 180 degrees
+plane_E_bankLeft180 is Quat(i)
+Matrix... [
+   [   1   0   0  ]
+   [   0  -1   0  ]
+   [   0   0  -1  ]
+]
+plane_N_bankLeft180 is Quat(0.0 + (0.707,0,-0.707))
+Matrix... [
+   [   0   0  -1  ]
+   [   0  -1   0  ]
+   [  -1   0   0  ]
+]
+plane_W_bankLeft180 is Quat(k)
+Matrix... [
+   [  -1   0   0  ]
+   [   0  -1   0  ]
+   [   0   0   1  ]
+]
+plane_S_bankLeft180 is Quat(0.0 + (0.707,0,0.707))
+Matrix... [
+   [   0   0   1  ]
+   [   0  -1   0  ]
+   [   1   0   0  ]
+]
+
+Banking/Rolling Right 90 degrees
+plane_E_bankRight180 is Quat(0.7 + (-0.707,0,0))
+Matrix... [
+   [   1   0   0  ]
+   [   0   0   1  ]
+   [   0  -1   0  ]
+]
+plane_N_bankRight180 is Quat(0.5 + (-0.5,0.5,0.5))
+Matrix... [
+   [   0  -1   0  ]
+   [   0   0   1  ]
+   [  -1   0   0  ]
+]
+plane_W_bankRight80 is Quat(0.0 + (0,0.707,0.707))
+Matrix... [
+   [  -1   0   0  ]
+   [   0   0   1  ]
+   [   0   1   0  ]
+]
+plane_S_bankRight80 is Quat(0.5 + (-0.5,-0.5,-0.5))
+Matrix... [
+   [   0   1   0  ]
+   [   0   0   1  ]
+   [   1   0   0  ]
+]
+# -------- end BANK/ROLL ---------------------
+SEE THIS WEBSITE for DETAILED DIAGRAMS on the TESTS of the PLANE's rotations
+https://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToMatrix/examples/index.htm
