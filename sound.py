@@ -5,9 +5,9 @@ class Sound:
     def __init__(self, bg_music):
         pg.mixer.init()
         pg.mixer.music.load(bg_music)
-        pg.mixer.music.set_volume(0.0)
+        pg.mixer.music.set_volume(0.5)
         self.bullet_sound = pg.mixer.Sound('sounds/bullet2.wav')
-        self.bullet_sound.set_volume(0.0)
+        self.bullet_sound.set_volume(0.5)
         self.playing_bg = True
         self.play()
         self.pause_bg()

@@ -6,11 +6,13 @@ from ship import Ship
 from alien import Aliens
 from game_stats import GameStats
 from button import Button
-from scariestalien import Ufo, ScaryUfo
+from scariestalien import Ufos
 from scoreboard import Scoreboard
 from pygame.sprite import Group
 from sound import Sound
-from barrier import Barriers
+from threading import Timer
+import random
+from barrier import Barrier
 
 import time
 
@@ -19,7 +21,6 @@ class Game:
     def __init__(self):
         pg.init()
         self.settings = Settings()
-        self.game_stats = GameStats(self.settings)
         self.screen = pg.display.set_mode(size=(self.settings.screen_width, self.settings.screen_height))
         pg.display.set_caption("Alien Invasion")
         ship_image = pg.image.load('images/ship.bmp')
@@ -72,7 +73,6 @@ class Game:
 
         self.restart()
     def play2(self):
-
         pg.init()
         self.settings = Settings()
         self.screen = pg.display.set_mode(size=(self.settings.screen_width, self.settings.screen_height))
@@ -125,42 +125,49 @@ class Game:
 
 
     def restart(self):
-        ufo_group = Group()
+
         self.play_button = Button(settings=self.settings, screen=self.screen, msg="Play")
         self.hs_button = scorebutton(settings=self.settings, screen=self.screen, msg="HIGH SCORES")
         self.stats = GameStats(settings=self.settings)
         self.sb = Scoreboard(game=self, sound=self.sound)
         self.settings.init_dynamic_settings()
-       # self.barriers = Barriers(game=self)
+        self.barrier = Barrier(ship_height=self.ship_height, game=self)
+        self.ufo = Ufos(ship_height=self.ship_height, game=self)
         self.aliens = Aliens(ship_height=self.ship_height, game=self)
-        self.ship = Ship(aliens=self.aliens, sound=self.sound, game=self)
-        self.ufo = Ufo(settings=self.settings, screen=self.screen, ufo_group=ufo_group, ship_height=self.ship_height,
-                       game=self)
+        self.ship = Ship(aliens=self.aliens, sound=self.sound, game=self , ufo=self.ufo )
+
         self.aliens.add_ship(ship=self.ship)
 
         self.stats.high_score = self.hs
         self.sb.prep_high_score()
 
     def scores(self):
-        myfont = pg.font.SysFont("monospace",60)
+        myfont = pg.font.SysFont("monospace", 60)
         label = myfont.render("HIGH SCORES", 1, (171, 130, 255))
         self.screen.blit(label, (420, 50))
-        score_display = myfont.render(str(self.hs),1,(171, 130, 255))
+        score_display = myfont.render(str(self.hs), 1, (171, 130, 255))
         self.screen.blit(score_display, (570, 150))
 
     def play(self):
+
+
         while True:
+
+
             gf.check_events(stats=self.stats, play_button=self.play_button, ship=self.ship, sound=self.sound, hs_button=self.hs_button)
             if self.stats.game_active:
                 self.ship.update()
                 self.aliens.update()
                 self.ufo.update()
+                self.barrier.update()
+
 
             if not self.stats.hs_active:
                 self.hs_button.draw_button()
             else:
                 self.screen.fill(self.settings.bg_color)
                 self.scores()
+
 
             if not self.stats.game_active:
                 self.play_button.draw()
@@ -171,10 +178,12 @@ class Game:
                 self.screen.fill(self.settings.bg_color)
                 self.ship.draw()
                 self.aliens.draw()
-                self.ufo.draw()
                 self.sb.show_score()
-            pg.display.flip()
+                self.ufo.draw()
+                self.barrier.draw()
 
+
+            pg.display.flip()
 
     def reset(self):
         if self.stats.ships_left > 0:
@@ -182,6 +191,8 @@ class Game:
             self.sb.prep_ships()
             self.aliens.empty()
             self.aliens.create_fleet()
+            self.ufo.empty()
+            self.ufo.create_fleet()
             self.ship.center_ship()
             time.sleep(0.5)
             self.ship.timer = Ship.timer
@@ -190,15 +201,13 @@ class Game:
             self.sound.pause_bg()
             self.hs = self.stats.high_score
             self.play2()
+        with open("score.txt", 'a') as f:
+            f.write(f'The high score was {self.hs}\n')
 
 
 def main():
     g = Game()
     g.play()
-    g.play2()
-    with open("score.txt", 'a') as f:
-        f.write(f'High score was')
-
     # Vector.run_tests()
     # Quaternion.run_tests()
     # Matrix.run_tests()

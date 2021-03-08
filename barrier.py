@@ -1,19 +1,19 @@
 import pygame as pg
 from pygame.sprite import Sprite
-
+from pygame.sprite import Group
 
 class Barrier:
-    def __init__(self, settings, screen, barrier_group, ship_height, game):
-        self.settings = settings
-        self.barriers = barrier_group
-        self.screen = screen
+    def __init__(self, ship_height, game):
+        self.settings = game.settings
+        self.screen = game.screen
         self.game = game
+        self.barrier_group = Group()
         self.ship_height = ship_height
         self.create_fleet()
 
     def create_fleet(self):
         settings, screen = self.settings, self.screen
-        barrier = Barriers(settings=settings, screen=self.screen)
+        barrier = Barriers(parent=self, game =self.game )
         barrier_width = barrier.rect.width
         barrier_height = barrier.rect.height + 530  # position of alien
         barrier_per_row = self.barrier_per_row(settings=settings, barrier_width=barrier_width)
@@ -21,35 +21,37 @@ class Barrier:
 
         for y in range(rows_per_screen):
             for x in range(barrier_per_row):
-                barrier = Barriers(settings=settings, screen=screen, x=barrier_width + 2 * barrier_width * x,
+                barrier = Barriers(parent=self, game=self.game, x=barrier_width + 2 * barrier_width * x,
                               y=barrier_height + 2 * barrier_height * y)
-                self.barriers.add(barrier)
+                self.barrier_group.add(barrier)
 
     def barrier_per_row(self, settings, barrier_width):
         space_x = settings.screen_width - 2 * barrier_width
-        return int(space_x / (2 * barrier_width))  # column
+        return 4 # column
 
     def rows_per_screen(self, settings, barrier_height):
         space_y = settings.screen_height - (2 * barrier_height) - self.ship_height
-        return 2        # row ,  og code int(space_y / (2 * alien_height))
+        return 1      # row ,  og code int(space_y / (2 * alien_height))
 
-    def add(self, barrier): self.barriers.add(barrier)
+    def add(self, barrier): self.barrier_group.add(barrier)
 
     def update(self):
-        self.barriers.update()
+        self.barrier_group.update()
 
 
     def draw(self):
-        for barrier in self.barriers.sprites(): barrier.draw()
+        for barrier in self.barrier_group.sprites():
+            barrier.draw()
 
 
 class Barriers(Sprite):   # INHERITS from SPRITE
-    def __init__(self, settings, screen, number=0, x=0, y=0, speed=0):
+    def __init__(self,game, parent, number=0, x=0, y=0, speed=0):
         super().__init__()
-        self.screen = screen
-        self.settings = settings
+        self.screen = game.screen
+        self.settings = game.settings
         self.number = number
-
+        self.game = game
+        self.parent = parent
         self.image = pg.image.load('images/bar.png')
         self.rect = self.image.get_rect()
 

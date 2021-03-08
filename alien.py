@@ -145,12 +145,8 @@ class Alien(Sprite):   # INHERITS from SPRITE
 
     def killed(self):
         if self.dead and not self.timer_switched:
-            self.timer = Timer(frames=Alien.images_boom, wait=400, looponce=True)
+            self.timer = Timer(frames=Alien.images_boom, wait=200, looponce=True)
             self.timer_switched = True
-            li = self.parent.alien_group
-            length = len(li)
-            for ali in li:
-                print(ali)
             self.game.stats.score += self.settings.alien_points    # del. * len(self.parent.alien_group)
             self.game.sb.check_high_score(self.game.stats.score)
             self.game.sb.prep_score()

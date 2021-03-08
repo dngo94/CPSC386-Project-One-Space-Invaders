@@ -23,6 +23,7 @@ class Settings():
         self.debounce = 0.0001
 
         self.score_scale = 1.5
+        self.ufo_points = 1000
         self.alien_points = 50
         self.init_dynamic_settings()
 
@@ -33,7 +34,7 @@ class Settings():
         self.fleet_direction = 1
         self.alien_points = 50
         self.ufo_speed = -0.5
-        self.ufo_fleet_direction = 1
+        self.ufo_fleet_direction = -1
         self.speedup_scale = 1.1
 
     def increase_speed(self):

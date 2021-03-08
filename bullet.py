@@ -24,7 +24,7 @@ class BulletFromAlien(Bullet):
         self.color = settings.alien_bullet_color
         self.speed_factor = -settings.bullet_speed_factor
         self.width = settings.alien_bullet_width
-        self.height = settings.alien_bullet_height
+        self.height =settings.alien_bullet_height
 
         self.rect = pg.Rect(0, 0, self.width, self.height)
         self.rect.top = y
