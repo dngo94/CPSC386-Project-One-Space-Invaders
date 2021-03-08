@@ -45,9 +45,12 @@ class Ufo:
     def remove(self, scaryalien):
         self.ufo.ufo.remove(scaryalien)
 
+
+
     def check_edges(self):
         for scaryalien in self.ufo:
             if scaryalien.check_edges(): return True
+
         return False
 
     def check_ufo_bottom(self):
@@ -77,11 +80,12 @@ class Ufo:
         if not self.is_moving:
             for scaryalien in self.ufo.sprites(): scaryalien.draw()
         else:
-            return
+
+            print("hello")            #part where alien hit the edge
 
 
 class ScaryUfo(Sprite):  # INHERITS from SPRITE
-    images = [[pg.image.load('aliensimg/ufo' + str(number) + str(i) + '.png') for i in range(2)] for number in range(1)]
+    images = [[pg.image.load('images/ufo' + str(number) + str(i) + '.png') for i in range(2)] for number in range(1)]
     images_boom = [pg.image.load('images/alien_boom' + str(i) + '.png') for i in range(4)]
 
     timers = []

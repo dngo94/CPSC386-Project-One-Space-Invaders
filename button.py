@@ -12,7 +12,7 @@ class Button:
         self.font = pygame.font.SysFont(None, 48)
 
         self.rect = pg.Rect(0, 0, self.width, self.height)
-        self.rect.center = (600, 610)  # og code self.screen_rect.center
+        self.rect.center = (600, 610)
         self.prep_msg(msg)
 
     def prep_msg(self, msg):

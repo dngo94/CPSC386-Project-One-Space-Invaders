@@ -1,6 +1,7 @@
 class GameStats():
     def __init__(self, settings):
         self.settings = settings
+        self.hs_active = False
         self.game_active = False
         self.reset_stats()
         self.high_score = 0

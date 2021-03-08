@@ -6,30 +6,34 @@ class Settings():
         # Screen settings
         self.screen_width = 1200
         self.screen_height = 800
-        self.bg_color = (30, 30, 30)
+        self.bg_color = (0, 0, 0)
 
         self.ship_limit = 2
-        self.bullet_width = 2
-        self.bullet_height = 30
-        self.bullet_color = 255, 0, 0
-        self.bullets_every = 1
+        self.alien_bullet_width = 2
+        self.alien_bullet_height = 30
+        self.alien_bullet_color = 0, 255, 0
+        self.alien_bullets_every = 1
 
-        self.fleet_drop_speed = 2
+        self.ship_bullet_height = 30
+        self.ship_bullet_width = 2
+        self.ship_bullet_color = 148,0,211
+        self.ship_bullets_every = 1
+
+        self.fleet_drop_speed = 10
         self.debounce = 0.0001
 
         self.score_scale = 1.5
-        self.alien_points = [10, 20, 30]
-        self.ufo_points = 100
+        self.alien_points = 50
         self.init_dynamic_settings()
 
     def init_dynamic_settings(self):
         self.ship_speed_factor = 5
-        self.bullet_speed_factor = 5
-        self.alien_speed = 13
-        self.ufo_speed = -0.5
+        self.bullet_speed_factor = 1
+        self.alien_speed = 1
         self.fleet_direction = 1
+        self.alien_points = 50
+        self.ufo_speed = -0.5
         self.ufo_fleet_direction = 1
-        self.alien_points = 10
         self.speedup_scale = 1.1
 
     def increase_speed(self):

@@ -3,11 +3,12 @@ from pygame.sprite import Group
 from ship import Ship
 
 class Scoreboard():
-    def __init__(self, settings, screen, stats, sound):
-        self.screen = screen
-        self.screen_rect = screen.get_rect()
-        self.settings = settings
-        self.stats = stats
+    def __init__(self, game, sound):
+        self.game = game
+        self.screen = game.screen
+        self.screen_rect = game.screen.get_rect()
+        self.settings = game.settings
+        self.stats = game.stats
         self.sound = sound
 
         self.text_color = (230, 230, 230)
@@ -53,7 +54,7 @@ class Scoreboard():
     def prep_ships(self):
         self.ships = Group()
         for i in range(self.stats.ships_left):
-            ship = Ship(settings=self.settings, screen=self.screen, sound=self.sound)
+            ship = Ship(game=self.game, sound=self.sound)
             ship.rect.x = 10 + i * ship.rect.width
             ship.rect.y = 10
             self.ships.add(ship)

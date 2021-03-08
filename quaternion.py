@@ -297,12 +297,12 @@ class Quaternion:
         print('https://www.euclideanspace.com/maths/geometry/rotations/conversions/quaternionToMatrix/examples/index.htm')
 
 
-# def main():
-#     # Vector.run_tests()
-#     Quaternion.run_tests()
-#     # Matrix.run_tests()
-#
-#
-# if __name__ == '__main__':
-#     main()
-#
+def main():
+    # Vector.run_tests()
+    Quaternion.run_tests()
+    # Matrix.run_tests()
+
+
+if __name__ == '__main__':
+    main()
+
